@@ -1,0 +1,23 @@
+.graphLabel {
+   display:inline-block;
+   padding-right:0.25rem;
+   width:4rem;
+}
+
+.bar1, .bar2, .bar3, .bar4 {
+   height:1rem;
+   display:inline-block;
+}
+
+.bar1 {
+   background-color:#B8A244;
+}
+.bar2 {
+   background-color:#4F430F;
+}
+.bar3 {
+   background-color:#7FB9B5;
+}
+.bar4 {
+   background-color:#8B825D;
+}

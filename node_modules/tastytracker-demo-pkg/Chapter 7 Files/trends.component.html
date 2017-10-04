@@ -1,0 +1,19 @@
+<h2>TastyTrends</h2>
+<div>
+  This week compared to last week:
+  <div><label>This week:</label> {{totalThisWeek | currency:'USD':true:'.2'}}</div>
+  <div><label>Last week:</label> {{totalLastWeek | currency:'USD':true:'.2'}}</div>
+</div>
+
+<div>
+  On average, I spend this amount
+  <select id="interval" #interval [ngModel]="averageInterval" (change)="onSelect($event.target.value)">
+    <option value="D">Daily</option>
+    <option value="W">Weekly</option>
+    <option value="M">Monthly</option>
+  </select>:<br/>
+  <label>Breakfast</label> {{breakfastAverage | currency:'USD':true:'.2'}}<br/>
+  <label>Lunch</label> {{lunchAverage | currency:'USD':true:'.2'}}<br/>
+  <label>Dinner</label> {{dinnerAverage | currency:'USD':true:'.2'}}<br/>
+  <label>Snacks</label> {{snackAverage | currency:'USD':true:'.2'}}
+</div>

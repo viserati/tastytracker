@@ -1,0 +1,82 @@
+<div class="row">
+  <section>
+    <header>
+      <div class="row">
+        <div class="col-xs-12 text-xs-center pl-0 pr-0">
+          <h2>Edit Meals</h2>
+        </div>
+      </div>
+    </header>		
+
+    <div class="row">
+      <div class="col-xs-6 offset-xs-4 text-xs-right mb-2">
+        <a (click)="gotoMain()">return to main screen 
+          <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </div>
+
+    <div class="edit-meals-width row mx-auto">
+      <div class="col-xs-8">
+        <form>
+        <!-- Add edit-meals-width and mx-auto here again -->
+        <!-- to force the restaurant selector to the same -->
+        <!-- width as the content below it -->
+          <div class="form-group row edit-meals-width mx-auto">
+            <label for="restaurantID" class="sr-only">
+              select restaurant</label>
+            <div class="col-xs-12">
+              <select id="restaurantID" #restaurantID
+                      name="restaurantID" class="form-control custom-select"
+                      [ngModel]="selectedRestaurant"
+                      (change)="onSelect($event.target.value)">
+                <option value="0">-- select a restaurant --</option>
+                <option *ngFor="let r of restaurants" value="{{r.id}}">{{r.name}}</option>
+              </select>
+		  </div>							
+          </div>
+
+          <!-- begin meal display, which really shouldn't be inside the form -->
+          <!-- but that's the way these classes are set up -->
+
+          <div *ngIf="badData" class="alert alert-danger">
+            <p *ngIf="badDataMessage1">{{badDataMessage1}}</p>
+            <p *ngIf="badDataMessage2">{{badDataMessage2}}</p>
+          </div>
+
+          <div *ngFor="let m of meals" class="form-group row edit-meals-width mb-1 mx-auto">
+            <div class="col-xs-3">
+              <input id="listMealValue" #listMealValue
+                      type="text" class="form-control"
+                      value="{{m.amount | number:'.2'}}" aria-labelledby="Amount spent" />
+            </div>
+            <div class="col-xs-3">
+              <select id="listMealName" #listMealName
+                      class="form-control custom-select" 
+                      name="listMealName" aria-labelledby="Meal type">
+                <option value="B" [attr.selected]="m.name==='B' ? true : null">Breakfast</option>
+                <option value="L" [attr.selected]="m.name==='L' ? true : null">Lunch</option>
+                <option value="D" [attr.selected]="m.name==='D' ? true : null">Dinner</option>
+                <option value="S" [attr.selected]="m.name==='S' ? true : null">Snack</option>
+              </select>
+            </div>
+            <div class="col-xs-3">
+              <input id="listMealDate" #listMealDate
+				 type="text" class="form-control"
+				 value="{{m.date | dateDisplay}}" aria-labelledby="Meal date" />
+            </div>
+            <div class="col-xs-3">
+              <a (click)="save(listMealValue.value, listMealName.value,
+                               listMealDate.value, m.name, m.date)"
+                 aria-label="Save changes">
+                 <i class="fa fa-check large" aria-hidden="true"></i></a>
+              <a (click)="delete(m.name, m.date)"
+                 aria-label="Delete restaurant" class="red">
+                 <i class="fa fa-times large" aria-hidden="true"></i></a>
+            </div>
+          </div> <!-- *ngFor -->
+
+        </form>
+      </div>
+    </div>
+  </section>
+</div>		

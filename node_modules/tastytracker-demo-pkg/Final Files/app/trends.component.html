@@ -1,0 +1,78 @@
+<section>
+  <header>
+    <div class="row">
+      <div class="col-xs-12 text-xs-center pl-0 pr-0">
+        <h2>TastyTrends</h2>
+      </div>
+    </div>
+  </header>		
+
+  <div class="row">
+    <div class="col-xs-12">
+      <p>TastyTracker keeps track of up to a year's worth of spending.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <header><h3>This week compared to last week</h3></header>
+
+	 <div id="graphDiv1" #graphDiv1 class="mb-1">
+       <div><h4 class="graphLabel">This week</h4>
+            <div id="weekBar1" class="bar1" [ngStyle]="{'width': weekBar1}"></div>
+            <span class="small" style="padding-left:0.25rem;">
+              {{totalThisWeek | currency:'USD':true:'.2'}}</span>
+       </div>
+       <div><h4 class="graphLabel">Last week</h4>
+            <div id="weekBar2" class="bar2" [ngStyle]="{'width': weekBar2}"></div>
+            <span class="small" style="padding-left:0.25rem;">
+              {{totalLastWeek | currency:'USD':true:'.2'}}</span>
+       </div>
+      </div>
+
+
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <form class="form-inline">
+      <!-- Both the header and h3 tags need d-inline to force inline display. -->
+        <header class="d-inline">
+          <h3 class="d-inline">On average, I spend this amount</h3>
+        </header>
+        <div class="form-group">
+          <label for="interval" class="sr-only">select time period</label>
+          <select id="interval" #interval name="interval"
+                  class="form-control custom-select" [ngModel]="averageInterval"
+                  (change)="onSelect($event.target.value)">
+            <option value="D">Daily</option>
+            <option value="W">Weekly</option>
+            <option value="M">Monthly</option>
+          </select>
+        </div>
+      </form>
+
+	 <div id="graphDiv2" #graphDiv2>
+       <div><h4 class="graphLabel">Breakfast</h4>
+            <div id="mealBar1" class="bar1" [ngStyle]="{'width': mealBar1}"></div>
+            <span class="small" style="padding-left:0.25rem;">
+              {{breakfastAverage | currency:'USD':true:'.2'}}</span>
+       </div>
+       <div><h4 class="graphLabel">Lunch</h4>
+            <div id="mealBar2" class="bar2" [ngStyle]="{'width': mealBar2}"></div>
+            <span class="small" style="padding-left:0.25rem;">
+              {{lunchAverage | currency:'USD':true:'.2'}}</span>
+       </div>
+       <div><h4 class="graphLabel">Dinner</h4>
+            <div id="mealBar3" class="bar3" [ngStyle]="{'width': mealBar3}"></div>
+            <span class="small" style="padding-left:0.25rem;">
+              {{dinnerAverage | currency:'USD':true:'.2'}}</span>
+       </div>
+       <div><h4 class="graphLabel">Snacks</h4>
+            <div id="mealBar4" class="bar4" [ngStyle]="{'width': mealBar4}"></div>
+            <span class="small" style="padding-left:0.25rem;">
+              {{snackAverage | currency:'USD':true:'.2'}}</span>
+       </div>
+      </div>
+
+    </div>
+  </div>
+</section>
